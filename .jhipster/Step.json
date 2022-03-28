@@ -1,0 +1,59 @@
+{
+  "applications": "*",
+  "changelogDate": "20220328130549",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "step",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "stepDefinitionId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "display",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "order",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Step",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "block",
+      "otherEntityRelationshipName": "step",
+      "relationshipName": "block",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "step",
+      "relationshipName": "course",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

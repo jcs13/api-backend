@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20220328130552",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "offer",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Offer",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "businessUnit",
+      "otherEntityRelationshipName": "offer",
+      "relationshipName": "businessUnit",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

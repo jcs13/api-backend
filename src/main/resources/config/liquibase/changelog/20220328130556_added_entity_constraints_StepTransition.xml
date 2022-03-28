@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity StepTransition.
+    -->
+    <changeSet id="20220328130556-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="course_definition_id"
+                                 baseTableName="step_transition"
+                                 constraintName="fk_step_transition__course_definition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="course_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="current_id"
+                                 baseTableName="step_transition"
+                                 constraintName="fk_step_transition__current_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="step_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="next_id"
+                                 baseTableName="step_transition"
+                                 constraintName="fk_step_transition__next_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="step_definition"/>
+    </changeSet>
+</databaseChangeLog>

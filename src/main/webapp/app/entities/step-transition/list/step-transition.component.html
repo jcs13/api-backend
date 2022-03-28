@@ -1,0 +1,98 @@
+<div>
+  <h2 id="page-heading" data-cy="StepTransitionHeading">
+    <span>Step Transitions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-step-transition"
+        [routerLink]="['/step-transition/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Step Transition </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="stepTransitions?.length === 0">
+    <span>No stepTransitions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="stepTransitions && stepTransitions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Transition</span></th>
+          <th scope="col"><span>Course Definition</span></th>
+          <th scope="col"><span>Current</span></th>
+          <th scope="col"><span>Next</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stepTransition of stepTransitions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/step-transition', stepTransition.id, 'view']">{{ stepTransition.id }}</a>
+          </td>
+          <td>{{ stepTransition.transition }}</td>
+          <td>
+            <div *ngIf="stepTransition.courseDefinition">
+              <a [routerLink]="['/course-definition', stepTransition.courseDefinition?.id, 'view']">{{
+                stepTransition.courseDefinition?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="stepTransition.current">
+              <a [routerLink]="['/step-definition', stepTransition.current?.id, 'view']">{{ stepTransition.current?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="stepTransition.next">
+              <a [routerLink]="['/step-definition', stepTransition.next?.id, 'view']">{{ stepTransition.next?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/step-transition', stepTransition.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/step-transition', stepTransition.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(stepTransition)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

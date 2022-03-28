@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20220328130557",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "block_definition",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "display",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "BlockDefinition",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "itemComponent",
+      "otherEntityRelationshipName": "blockDefinition",
+      "ownerSide": true,
+      "relationshipName": "itemComponent",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

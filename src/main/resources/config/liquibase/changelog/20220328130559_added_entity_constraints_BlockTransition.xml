@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity BlockTransition.
+    -->
+    <changeSet id="20220328130559-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="step_definition_id"
+                                 baseTableName="block_transition"
+                                 constraintName="fk_block_transition__step_definition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="step_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="course_definition_id"
+                                 baseTableName="block_transition"
+                                 constraintName="fk_block_transition__course_definition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="course_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="current_id"
+                                 baseTableName="block_transition"
+                                 constraintName="fk_block_transition__current_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="block_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="next_id"
+                                 baseTableName="block_transition"
+                                 constraintName="fk_block_transition__next_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="block_definition"/>
+    </changeSet>
+</databaseChangeLog>

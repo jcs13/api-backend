@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="block">
+      <h2 data-cy="blockDetailsHeading"><span>Block</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Id</span></dt>
+        <dd>
+          <span>{{ block.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ block.name }}</span>
+        </dd>
+        <dt><span>Label</span></dt>
+        <dd>
+          <span>{{ block.label }}</span>
+        </dd>
+        <dt><span>Component Name</span></dt>
+        <dd>
+          <span>{{ block.componentName }}</span>
+        </dd>
+        <dt><span>Step Definition Id</span></dt>
+        <dd>
+          <span>{{ block.stepDefinitionId }}</span>
+        </dd>
+        <dt><span>Block Definition Id</span></dt>
+        <dd>
+          <span>{{ block.blockDefinitionId }}</span>
+        </dd>
+        <dt><span>Display</span></dt>
+        <dd>
+          <span>{{ block.display }}</span>
+        </dd>
+        <dt><span>Order</span></dt>
+        <dd>
+          <span>{{ block.order }}</span>
+        </dd>
+        <dt><span>Step</span></dt>
+        <dd>
+          <div *ngIf="block.step">
+            <a [routerLink]="['/step', block.step?.id, 'view']">{{ block.step?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/block', block.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

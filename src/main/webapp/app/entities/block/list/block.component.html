@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="BlockHeading">
+    <span>Blocks</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-block"
+        [routerLink]="['/block/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Block </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="blocks?.length === 0">
+    <span>No blocks found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="blocks && blocks.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>Id</span></th>
+          <th scope="col"><span>Name</span></th>
+          <th scope="col"><span>Label</span></th>
+          <th scope="col"><span>Component Name</span></th>
+          <th scope="col"><span>Step Definition Id</span></th>
+          <th scope="col"><span>Block Definition Id</span></th>
+          <th scope="col"><span>Display</span></th>
+          <th scope="col"><span>Order</span></th>
+          <th scope="col"><span>Step</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let block of blocks; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/block', block.id, 'view']">{{ block.id }}</a>
+          </td>
+          <td>{{ block.name }}</td>
+          <td>{{ block.label }}</td>
+          <td>{{ block.componentName }}</td>
+          <td>{{ block.stepDefinitionId }}</td>
+          <td>{{ block.blockDefinitionId }}</td>
+          <td>{{ block.display }}</td>
+          <td>{{ block.order }}</td>
+          <td>
+            <div *ngIf="block.step">
+              <a [routerLink]="['/step', block.step?.id, 'view']">{{ block.step?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/block', block.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/block', block.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(block)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

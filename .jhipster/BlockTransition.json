@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20220328130559",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "block_transition",
+  "fields": [
+    {
+      "fieldName": "transition",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "BlockTransition",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "stepDefinition",
+      "otherEntityRelationshipName": "blockTransition",
+      "ownerSide": true,
+      "relationshipName": "stepDefinition",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "courseDefinition",
+      "otherEntityRelationshipName": "blockTransition",
+      "ownerSide": true,
+      "relationshipName": "courseDefinition",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "blockDefinition",
+      "otherEntityRelationshipName": "blockTransition",
+      "ownerSide": true,
+      "relationshipName": "current",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "blockDefinition",
+      "otherEntityRelationshipName": "blockTransition",
+      "ownerSide": true,
+      "relationshipName": "next",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}
