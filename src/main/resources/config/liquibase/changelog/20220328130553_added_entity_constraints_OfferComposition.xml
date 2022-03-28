@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity OfferComposition.
+    -->
+    <changeSet id="20220328130553-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="offer_id"
+                                 baseTableName="offer_composition"
+                                 constraintName="fk_offer_composition__offer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="offer"/>
+
+        <addForeignKeyConstraint baseColumnNames="course_parent_id"
+                                 baseTableName="offer_composition"
+                                 constraintName="fk_offer_composition__course_parent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="course_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="course_child_id"
+                                 baseTableName="offer_composition"
+                                 constraintName="fk_offer_composition__course_child_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="course_definition"/>
+    </changeSet>
+</databaseChangeLog>

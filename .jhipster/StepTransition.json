@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20220328130556",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "step_transition",
+  "fields": [
+    {
+      "fieldName": "transition",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "StepTransition",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "courseDefinition",
+      "otherEntityRelationshipName": "stepTransition",
+      "ownerSide": true,
+      "relationshipName": "courseDefinition",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "stepDefinition",
+      "otherEntityRelationshipName": "stepTransition",
+      "ownerSide": true,
+      "relationshipName": "current",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "stepDefinition",
+      "otherEntityRelationshipName": "stepTransition",
+      "ownerSide": true,
+      "relationshipName": "next",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

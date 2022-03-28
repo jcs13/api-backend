@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20220328130548",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "course",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "offerId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Course",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "step",
+      "otherEntityRelationshipName": "course",
+      "relationshipName": "step",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "simulation",
+      "otherEntityRelationshipName": "course",
+      "ownerSide": false,
+      "relationshipName": "simulation",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

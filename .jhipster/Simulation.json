@@ -1,0 +1,74 @@
+{
+  "applications": "*",
+  "changelogDate": "20220328130547",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "simulation",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "affaire",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "client",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "modified",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "userCreation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "userCurrent",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Simulation",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "course",
+      "otherEntityRelationshipName": "simulation",
+      "ownerSide": true,
+      "relationshipName": "course",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "simulation",
+      "otherEntityRelationshipName": "simulation",
+      "ownerSide": true,
+      "relationshipName": "parent",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

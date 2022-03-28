@@ -1,0 +1,106 @@
+<div>
+  <h2 id="page-heading" data-cy="BlockTransitionHeading">
+    <span>Block Transitions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-block-transition"
+        [routerLink]="['/block-transition/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Block Transition </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="blockTransitions?.length === 0">
+    <span>No blockTransitions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="blockTransitions && blockTransitions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Transition</span></th>
+          <th scope="col"><span>Step Definition</span></th>
+          <th scope="col"><span>Course Definition</span></th>
+          <th scope="col"><span>Current</span></th>
+          <th scope="col"><span>Next</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let blockTransition of blockTransitions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/block-transition', blockTransition.id, 'view']">{{ blockTransition.id }}</a>
+          </td>
+          <td>{{ blockTransition.transition }}</td>
+          <td>
+            <div *ngIf="blockTransition.stepDefinition">
+              <a [routerLink]="['/step-definition', blockTransition.stepDefinition?.id, 'view']">{{
+                blockTransition.stepDefinition?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="blockTransition.courseDefinition">
+              <a [routerLink]="['/course-definition', blockTransition.courseDefinition?.id, 'view']">{{
+                blockTransition.courseDefinition?.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="blockTransition.current">
+              <a [routerLink]="['/block-definition', blockTransition.current?.id, 'view']">{{ blockTransition.current?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="blockTransition.next">
+              <a [routerLink]="['/block-definition', blockTransition.next?.id, 'view']">{{ blockTransition.next?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/block-transition', blockTransition.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/block-transition', blockTransition.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(blockTransition)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

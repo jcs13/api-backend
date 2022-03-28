@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20220328130553",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "offer_composition",
+  "fields": [
+    {
+      "fieldName": "inheritanceOrder",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "OfferComposition",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "offer",
+      "otherEntityRelationshipName": "offerComposition",
+      "ownerSide": true,
+      "relationshipName": "offer",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "courseDefinition",
+      "otherEntityRelationshipName": "offerComposition",
+      "ownerSide": true,
+      "relationshipName": "courseParent",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "courseDefinition",
+      "otherEntityRelationshipName": "offerComposition",
+      "ownerSide": true,
+      "relationshipName": "courseChild",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

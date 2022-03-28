@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20220328130551",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "business_unit",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "BusinessUnit",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "offer",
+      "otherEntityRelationshipName": "businessUnit",
+      "relationshipName": "offer",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

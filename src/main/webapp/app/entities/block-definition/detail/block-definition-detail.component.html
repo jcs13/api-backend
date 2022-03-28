@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="blockDefinition">
+      <h2 data-cy="blockDefinitionDetailsHeading"><span>Block Definition</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Id</span></dt>
+        <dd>
+          <span>{{ blockDefinition.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ blockDefinition.name }}</span>
+        </dd>
+        <dt><span>Label</span></dt>
+        <dd>
+          <span>{{ blockDefinition.label }}</span>
+        </dd>
+        <dt><span>Display</span></dt>
+        <dd>
+          <span>{{ blockDefinition.display }}</span>
+        </dd>
+        <dt><span>Item Component</span></dt>
+        <dd>
+          <div *ngIf="blockDefinition.itemComponent">
+            <a [routerLink]="['/item-component', blockDefinition.itemComponent?.id, 'view']">{{ blockDefinition.itemComponent?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/block-definition', blockDefinition.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

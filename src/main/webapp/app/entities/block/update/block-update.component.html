@@ -1,0 +1,145 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-block-heading" data-cy="BlockCreateUpdateHeading">Create or edit a Block</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('id')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('id')?.errors?.number"> This field should be a number. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_label">Label</label>
+          <input type="text" class="form-control" name="label" id="field_label" data-cy="label" formControlName="label" />
+          <div *ngIf="editForm.get('label')!.invalid && (editForm.get('label')!.dirty || editForm.get('label')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('label')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_componentName">Component Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="componentName"
+            id="field_componentName"
+            data-cy="componentName"
+            formControlName="componentName"
+          />
+          <div
+            *ngIf="
+              editForm.get('componentName')!.invalid && (editForm.get('componentName')!.dirty || editForm.get('componentName')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('componentName')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_stepDefinitionId">Step Definition Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="stepDefinitionId"
+            id="field_stepDefinitionId"
+            data-cy="stepDefinitionId"
+            formControlName="stepDefinitionId"
+          />
+          <div
+            *ngIf="
+              editForm.get('stepDefinitionId')!.invalid &&
+              (editForm.get('stepDefinitionId')!.dirty || editForm.get('stepDefinitionId')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('stepDefinitionId')?.errors?.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_blockDefinitionId">Block Definition Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="blockDefinitionId"
+            id="field_blockDefinitionId"
+            data-cy="blockDefinitionId"
+            formControlName="blockDefinitionId"
+          />
+          <div
+            *ngIf="
+              editForm.get('blockDefinitionId')!.invalid &&
+              (editForm.get('blockDefinitionId')!.dirty || editForm.get('blockDefinitionId')!.touched)
+            "
+          >
+            <small class="form-text text-danger" *ngIf="editForm.get('blockDefinitionId')?.errors?.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_display">Display</label>
+          <input type="checkbox" class="form-check" name="display" id="field_display" data-cy="display" formControlName="display" />
+          <div *ngIf="editForm.get('display')!.invalid && (editForm.get('display')!.dirty || editForm.get('display')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('display')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_order">Order</label>
+          <input type="number" class="form-control" name="order" id="field_order" data-cy="order" formControlName="order" />
+          <div *ngIf="editForm.get('order')!.invalid && (editForm.get('order')!.dirty || editForm.get('order')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('order')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('order')?.errors?.number"> This field should be a number. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_step">Step</label>
+          <select class="form-control" id="field_step" data-cy="step" name="step" formControlName="step">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="stepOption.id === editForm.get('step')!.value?.id ? editForm.get('step')!.value : stepOption"
+              *ngFor="let stepOption of stepsSharedCollection; trackBy: trackStepById"
+            >
+              {{ stepOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

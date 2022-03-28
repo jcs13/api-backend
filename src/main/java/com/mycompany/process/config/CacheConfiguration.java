@@ -48,6 +48,22 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.process.domain.User.class.getName());
             createCache(cm, com.mycompany.process.domain.Authority.class.getName());
             createCache(cm, com.mycompany.process.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.mycompany.process.domain.Simulation.class.getName());
+            createCache(cm, com.mycompany.process.domain.Course.class.getName());
+            createCache(cm, com.mycompany.process.domain.Course.class.getName() + ".steps");
+            createCache(cm, com.mycompany.process.domain.Step.class.getName());
+            createCache(cm, com.mycompany.process.domain.Step.class.getName() + ".blocks");
+            createCache(cm, com.mycompany.process.domain.Block.class.getName());
+            createCache(cm, com.mycompany.process.domain.BusinessUnit.class.getName());
+            createCache(cm, com.mycompany.process.domain.BusinessUnit.class.getName() + ".offers");
+            createCache(cm, com.mycompany.process.domain.Offer.class.getName());
+            createCache(cm, com.mycompany.process.domain.OfferComposition.class.getName());
+            createCache(cm, com.mycompany.process.domain.CourseDefinition.class.getName());
+            createCache(cm, com.mycompany.process.domain.StepDefinition.class.getName());
+            createCache(cm, com.mycompany.process.domain.StepTransition.class.getName());
+            createCache(cm, com.mycompany.process.domain.BlockDefinition.class.getName());
+            createCache(cm, com.mycompany.process.domain.ItemComponent.class.getName());
+            createCache(cm, com.mycompany.process.domain.BlockTransition.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

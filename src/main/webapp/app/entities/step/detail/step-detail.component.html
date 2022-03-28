@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="step">
+      <h2 data-cy="stepDetailsHeading"><span>Step</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Id</span></dt>
+        <dd>
+          <span>{{ step.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ step.name }}</span>
+        </dd>
+        <dt><span>Label</span></dt>
+        <dd>
+          <span>{{ step.label }}</span>
+        </dd>
+        <dt><span>Step Definition Id</span></dt>
+        <dd>
+          <span>{{ step.stepDefinitionId }}</span>
+        </dd>
+        <dt><span>Display</span></dt>
+        <dd>
+          <span>{{ step.display }}</span>
+        </dd>
+        <dt><span>Order</span></dt>
+        <dd>
+          <span>{{ step.order }}</span>
+        </dd>
+        <dt><span>Course</span></dt>
+        <dd>
+          <div *ngIf="step.course">
+            <a [routerLink]="['/course', step.course?.id, 'view']">{{ step.course?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/step', step.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

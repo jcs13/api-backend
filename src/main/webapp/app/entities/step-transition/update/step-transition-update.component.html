@@ -1,0 +1,101 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-step-transition-heading" data-cy="StepTransitionCreateUpdateHeading">Create or edit a Step Transition</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_transition">Transition</label>
+          <input
+            type="number"
+            class="form-control"
+            name="transition"
+            id="field_transition"
+            data-cy="transition"
+            formControlName="transition"
+          />
+          <div *ngIf="editForm.get('transition')!.invalid && (editForm.get('transition')!.dirty || editForm.get('transition')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('transition')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('transition')?.errors?.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_courseDefinition">Course Definition</label>
+          <select
+            class="form-control"
+            id="field_courseDefinition"
+            data-cy="courseDefinition"
+            name="courseDefinition"
+            formControlName="courseDefinition"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                courseDefinitionOption.id === editForm.get('courseDefinition')!.value?.id
+                  ? editForm.get('courseDefinition')!.value
+                  : courseDefinitionOption
+              "
+              *ngFor="let courseDefinitionOption of courseDefinitionsCollection; trackBy: trackCourseDefinitionById"
+            >
+              {{ courseDefinitionOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_current">Current</label>
+          <select class="form-control" id="field_current" data-cy="current" name="current" formControlName="current">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                stepDefinitionOption.id === editForm.get('current')!.value?.id ? editForm.get('current')!.value : stepDefinitionOption
+              "
+              *ngFor="let stepDefinitionOption of currentsCollection; trackBy: trackStepDefinitionById"
+            >
+              {{ stepDefinitionOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_next">Next</label>
+          <select class="form-control" id="field_next" data-cy="next" name="next" formControlName="next">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="stepDefinitionOption.id === editForm.get('next')!.value?.id ? editForm.get('next')!.value : stepDefinitionOption"
+              *ngFor="let stepDefinitionOption of nextsCollection; trackBy: trackStepDefinitionById"
+            >
+              {{ stepDefinitionOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
