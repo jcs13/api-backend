@@ -1,0 +1,131 @@
+entity Simulation {
+	id Long required
+    name String required
+    affaire String 
+    client String 
+    parc String 
+    status String 
+    created LocalDate required
+    modified LocalDate
+    userCreation String
+    userCurrent String    
+}
+
+relationship OneToOne {
+	Simulation to Course
+    Simulation{parent} to Simulation
+}
+
+
+entity Course {
+	id Long required
+    name String required
+    label String required
+    offerId String required
+}
+
+entity Step {
+	id Long required
+    name String required
+    label String required
+    stepDefinitionId String required
+    display Boolean required
+    order Integer required
+}
+
+entity Block {
+	id Long required
+    name String required
+    label String required
+    componentName String required
+    stepDefinitionId String required
+    blockDefinitionId String required
+	display Boolean required
+    order Integer required
+}
+
+relationship OneToMany {
+	Step to Block,
+	Course to Step,
+}
+
+
+entity BusinessUnit {
+	id Long required
+    code String required
+    name String required
+    label String required
+}
+
+entity Offer {
+	id Long required
+    name String required
+    label String required
+}
+
+entity OfferComposition {
+    inheritanceOrder Integer required
+}
+
+relationship OneToOne {
+	OfferComposition{offer} to Offer
+	OfferComposition{courseParent} to CourseDefinition
+	OfferComposition{courseChild} to CourseDefinition
+}
+
+entity CourseDefinition {
+	id Long required
+    name String required
+    label String required
+}
+
+entity StepDefinition {
+	id Long required
+    name String required
+    label String required
+    display Boolean required
+}
+
+
+entity StepTransition {
+    transition Integer required
+}
+
+relationship OneToOne {
+	StepTransition{courseDefinition} to CourseDefinition
+    StepTransition{current} to StepDefinition
+    StepTransition{next} to StepDefinition
+}
+
+entity BlockDefinition {
+	id Long required
+    name String required
+    label String required
+    display Boolean required
+}
+
+entity ItemComponent {
+	id Long required
+    name String required
+}
+
+
+entity BlockTransition {
+    transition Integer required
+}
+
+relationship OneToOne {
+	BlockTransition{stepDefinition} to StepDefinition
+	BlockTransition{courseDefinition} to CourseDefinition
+	BlockTransition{current} to BlockDefinition
+    BlockTransition{next} to BlockDefinition
+}
+
+
+relationship OneToMany {
+    BusinessUnit to Offer
+}
+
+relationship OneToOne {
+	BlockDefinition to ItemComponent
+}
